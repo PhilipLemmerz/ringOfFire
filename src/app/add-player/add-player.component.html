@@ -1,0 +1,11 @@
+<button mat-fab color="primary" class="addPlayerBTN" (click)="openDialog()">
+    <mat-icon>library_add</mat-icon>
+</button>
+
+<div *ngFor="let player of players; let i = index" id="playerOuterDiv" [class.highlightPlayer]="i==currentPlayer">
+    <div class="playerDiv">
+        <i class="fas fa-user-tag"></i>
+        <p> {{player}}</p>
+    </div>
+</div>
+
