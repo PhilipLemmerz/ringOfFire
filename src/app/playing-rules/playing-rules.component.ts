@@ -7,8 +7,9 @@ import { Component, Input, OnChanges } from '@angular/core';
 })
 export class PlayingRulesComponent implements OnChanges {
 
-  @Input() cardChange:any;
-  cardNumber:string = '';
+  @Input() cardString: any;
+  cardNumber: string = '';
+  currentPlayingRule: number = 13;
 
   cardAction = [
     { title: 'Waterfall', description: 'Everyone has to start drinking at the same time. As soon as player 1 stops drinking, player 2 may stop drinking. Player 3 may stop as soon as player 2 stops drinking, and so on.' },
@@ -19,23 +20,31 @@ export class PlayingRulesComponent implements OnChanges {
     { title: 'Chicks', description: 'All girls drink.' },
     { title: 'Heaven', description: 'Put your hands up! The last player drinks!' },
     { title: 'Mate', description: 'Pick a mate. Your mate must always drink when you drink and the other way around.' },
-    { title: 'Thumbmaster', description: '' },
+    { title: 'Thumbmaster', description: 'drink mate' },
     { title: 'Men', description: 'All men drink.' },
     { title: 'Quizmaster', description: 'drink mal wat' },
     { title: 'Never have i ever...', description: 'Say something you nnever did. Everyone who did it has to drink.' },
     { title: 'Rule', description: 'Make a rule. Everyone needs to drink when he breaks the rule.' },
+    { title: 'Playing Rules', description: 'Here you can find your drinking task' }
   ];
 
   constructor() { }
 
   ngOnChanges(): void {
-    this.cardNumber = this.cardChange;
-    this.changeRule();
+    this.cardNumber = this.cardString;
+    if (! this.cardNumber.includes('background')) {
+      this.changeRule();
+    }
   }
 
   changeRule() {
-    console.log(this.cardNumber);
-    
+    if(this.currentPlayingRule==100) {
+
+    }
+    let cardSplit = this.cardString?.split( '.');
+    let numberSplittedString = cardSplit[0].split('_');
+    this.currentPlayingRule = parseInt(numberSplittedString[1]);
+    console.log(this.currentPlayingRule);    
   }
 
 }

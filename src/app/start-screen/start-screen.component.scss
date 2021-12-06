@@ -23,6 +23,7 @@ h1 {
     text-align: center;
     font-size: 7rem;
     color: white;
+    line-height: normal;
 }
 
 img  {
@@ -33,4 +34,37 @@ img  {
         filter: brightness(1.7);
         cursor: pointer;
     }
+}
+
+
+@media screen and (max-width: 1200px){
+    h1 {
+        font-size: 4rem;
+    }
+
+    #startElement {
+        width:70vw;
+    }
+}
+
+@media screen and (max-width: 350px){
+    h1 {
+        font-size: 1.5rem;
+        padding-top: 1rem;
+    }
+
+    #startElement {
+        width:90vw;
+        align-items: center;
+    }
+    
+    img  {
+        width: 60%;
+    
+    }
+
+    .br {
+        display:none;
+    }
+
 }

@@ -26,12 +26,12 @@ export class GameComponent implements OnInit {
   }
 
   turnCard() {
-    if (this.cardTurned == false && this.stack.length >0) {
+    if (this.cardTurned == false && this.stack.length >0 && this.game.players.length >0 ) {
       this.cardTurned = true;
       let card: any = this.game.stack.pop();
       this.game.playedCards.push(card);
       this.card = card + '.jpg';
-      this.counter++;
+      this.counter++;    
       
 
       setTimeout(() => {
@@ -41,14 +41,19 @@ export class GameComponent implements OnInit {
         this.currentCard = true;
         this.nextPlayer();
       }, 2000);
-    }   
+    }
     
-  }  
+    if(this.game.players.length ==0) {
+      alert('bitte erst einen Spieler hinzufügen');
+    }
+    
+  }
+  
+  
 
   nextPlayer(){
     let number = this.counter % this.players.length;
-    this.game.currentPlayer = number;
-    console.log(this.game.currentPlayer);
+    this.game.currentPlayer = number;    
   }
 
 }

@@ -2,8 +2,7 @@
     position: relative;
     background-image: url('/assets/background.jpg');
     width: 100vw;
-    height: 100vh;
-    max-width: 100%;
+    height: 100%;
     display: flex;
     justify-content: center;
     align-items: center;    
@@ -20,8 +19,6 @@ img {
     margin-right: 20px; 
 }
 
-
-
 #cardTop:hover {
     transform: scale(1.2);
     transition: all 125ms ease-in-out;
@@ -32,7 +29,7 @@ img {
 }
 
 #showCurrentCard {
-    transform: translateX(500px) translateY(-200px) rotate(-10deg);    
+    transform: translateX(300px) translateY(-100px) rotate(-10deg);    
 }
 
 .displayNone {
@@ -42,11 +39,23 @@ img {
 #playersComponent {
     position: absolute;
     top: 50px;
-    right: 0px;
+    right: 0%;
+    max-height: 80vh;
+    overflow-y: auto;
 }
 
 .higlightPlayer {
    background-color: green;
+}
+
+#worngScreenSize {
+    display: none;
+}
+
+.rules {
+    display: absolute;
+    
+    
 }
 
 @keyframes turntheCard {    
@@ -61,14 +70,48 @@ img {
 
 
     60% {
-        transform: translateX(500px) translateY(100px);
+        transform: translateX(300px) translateY(-100px);
     }
 
     80% {
-        transform: translateY(-200px) translateX(500px);
+        transform: translateY(-100px) translateX(300px);
     }
 
     100% {
-        transform: translateX(500px) translateY(-200px) rotate(-10deg);
+        transform: translateX(300px) translateY(-100px) rotate(-10deg);
     }    
+}
+
+
+@media screen and (max-width:1350px) {
+
+    #gameScreen {
+        
+        justify-content: space-between;
+    }
+
+    img {padding-left: 2rem;}
+
+    
+}
+
+@media screen and (max-width:700px) {
+    #worngScreenSize {
+        display:flex;
+        justify-content: center;
+        align-items: center;
+        padding-left: 2rem;
+        padding-right: 2rem;
+        z-index: 5;
+        width: 80vw;
+        height: 100vh;
+    }
+
+    #gameScreen {
+        display: none;
+    }
+
+    .rules {
+        display: none;
+    }
 }

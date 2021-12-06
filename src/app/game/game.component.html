@@ -1,13 +1,18 @@
 <div id="gameScreen">
-    <app-add-player id="playersComponent" [currentPlayer]="game.currentPlayer" [players]="game.players"> </app-add-player>
-       
+    <app-add-player id="playersComponent" [currentPlayer]="game.currentPlayer" [players]="game.players"> </app-add-player>       
 
     <img *ngFor="let card of stack; let i=index;" id="{{card}}" [style.padding-left.px]="100"
         src="assets/card-background.png">
     <img id="showCurrentCard" [class.displayNone]="currentCard==false" src="/assets/{{currentCardPath}}">
     <img *ngIf="stack.length>=1" src="assets/{{card}}" (click)="turnCard()" [class.cardAnimation]="cardTurned" [class.displayNone]='noCards' id="cardTop">
 
+    <app-playing-rules class="rules" [cardString]="card"></app-playing-rules>
     
 </div>
 
-<app-playing-rules [cardChange]="currentCardPath"></app-playing-rules>
+<div id="worngScreenSize">
+    <p> Dieses Spiel ist für Endgeräte unter 700px nicht optimiert. Bitte nutze einen größeren Bildschirm </p>
+</div>
+
+
+
