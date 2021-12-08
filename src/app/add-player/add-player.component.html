@@ -2,7 +2,7 @@
     <mat-icon>library_add</mat-icon>
 </button>
 
-<div *ngFor="let player of players; let i = index" id="playerOuterDiv" [class.highlightPlayer]="i==currentPlayer">
+<div *ngFor="let player of game.players; let i = index" id="playerOuterDiv" [class.highlightPlayer]="i==game.currentPlayer">
     <div class="playerDiv">
         <i class="fas fa-user-tag"></i>
         <p> {{player}}</p>

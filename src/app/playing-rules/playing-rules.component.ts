@@ -7,8 +7,8 @@ import { Component, Input, OnChanges } from '@angular/core';
 })
 export class PlayingRulesComponent implements OnChanges {
 
-  @Input() cardString: any;
-  cardNumber: string = '';
+  @Input() lastCard: any;
+  cardNumber: number = 13
   currentPlayingRule: number = 13;
 
   cardAction = [
@@ -31,20 +31,8 @@ export class PlayingRulesComponent implements OnChanges {
   constructor() { }
 
   ngOnChanges(): void {
-    this.cardNumber = this.cardString;
-    if (! this.cardNumber.includes('background')) {
-      this.changeRule();
-    }
+    if (this.lastCard.length > 0) {
+      this.cardNumber = parseInt(this.lastCard[0].slice(-1));
+    }    
   }
-
-  changeRule() {
-    if(this.currentPlayingRule==100) {
-
-    }
-    let cardSplit = this.cardString?.split( '.');
-    let numberSplittedString = cardSplit[0].split('_');
-    this.currentPlayingRule = parseInt(numberSplittedString[1]);
-    console.log(this.currentPlayingRule);    
-  }
-
 }

@@ -1,6 +1,6 @@
 #gameScreen {
     position: relative;
-    background-image: url('/ringOfFire/assets/background.jpg');
+    background-image: url('/assets/background.jpg');
     width: 100vw;
     height: 100%;
     display: flex;
@@ -32,9 +32,7 @@ img {
     transform: translateX(300px) translateY(-100px) rotate(-10deg);    
 }
 
-.displayNone {
-    display: none;
-}
+
 
 #playersComponent {
     position: absolute;
@@ -53,9 +51,24 @@ img {
 }
 
 .rules {
-    display: absolute;
-    
-    
+    display: absolute;    
+}
+
+#gameOverScreen {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 2;
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.displayNone {
+    display: none !important;
 }
 
 @keyframes turntheCard {    

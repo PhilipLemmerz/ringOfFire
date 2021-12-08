@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { AddPlayerDialogComponent } from '../add-player-dialog/add-player-dialog.component';
+import { AngularFirestore } from '@angular/fire/compat/firestore';
 
 
 @Component({
@@ -10,29 +11,32 @@ import { AddPlayerDialogComponent } from '../add-player-dialog/add-player-dialog
 })
 export class AddPlayerComponent implements OnInit {
 
-  @Input() players: any;
-  @Input() currentPlayer: any;
+  @Input() game: any;
+  @Input() playHash: any;
+ 
 
 
-  constructor(public dialog: MatDialog) { }
+  constructor(public dialog: MatDialog, private firestore: AngularFirestore) { }
 
   ngOnInit(): void {
-    console.log(this.currentPlayer);
+   
   }
-
 
   openDialog(): void {
     const dialogRef = this.dialog.open(AddPlayerDialogComponent, {
-
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      if (this.players.length <= 9 && result?.length > 0) {
-        this.players.push(result);
-      } else if (this.players.length >= 9) {
+      if (this.game.players.length <= 9 && result?.length > 0) {
+        this.game.players.push(result);
+      } else if (this.game.players.length >= 9) {
         alert(' maximale Spieler Anzahl erreicht');
       }
+      this.firestore.collection('games').doc(this.playHash).update(this.game.convertToJSON());
     });
+
+    
+    
   }
 
 }

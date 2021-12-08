@@ -1,18 +1,25 @@
 <div id="gameScreen">
-    <app-add-player id="playersComponent" [currentPlayer]="game.currentPlayer" [players]="game.players"> </app-add-player>       
+    <app-add-player id="playersComponent" [game]="game" [playHash]="playHash"> </app-add-player>
 
-    <img *ngFor="let card of stack; let i=index;" id="{{card}}" [style.padding-left.px]="100"
-        src="/ringOfFire/assets/card-background.png">
-    <img id="showCurrentCard" [class.displayNone]="currentCard==false" src="/ringOfFire/assets/{{currentCardPath}}">
-    <img *ngIf="stack.length>=1" src="/ringOfFire/assets/{{card}}" (click)="turnCard()" [class.cardAnimation]="cardTurned" [class.displayNone]='noCards' id="cardTop">
+    <img *ngFor="let card of game.stack; let i=index;" id="{{card}}" [style.padding-left.px]="100"
+        src="assets/card-background.png">
+    <img id="showCurrentCard" [class.displayNone]="game.playedCards.length==0"
+        src="assets/{{game.playedCards.slice(-1)}}.jpg">
+    <img src="assets/{{card}}" (click)="turnCard()" [class.cardAnimation]="game.cardTurned"
+        [class.displayNone]='noCards' id="cardTop">
 
-    <app-playing-rules class="rules" [cardString]="card"></app-playing-rules>
-    
+    <app-playing-rules class="rules" [lastCard]="game.playedCards.slice(-1)"></app-playing-rules>
+
 </div>
+
+<div id="gameOverScreen" [class.displayNone]="game.gameEnd==false">
+
+    <a routerLink=""> Neues Spiel </a>
+
+</div>
+
+
 
 <div id="worngScreenSize">
     <p> Dieses Spiel ist für Endgeräte unter 700px nicht optimiert. Bitte nutze einen größeren Bildschirm </p>
 </div>
-
-
-
